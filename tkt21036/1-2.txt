@@ -1,0 +1,10 @@
+1.1
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS     NAMES
+5c10a09b3e81   nginx     "/docker-entrypoint.…"   About a minute ago   Up About a minute   80/tcp    friendly_hellman
+30c8046269b6   nginx     "/docker-entrypoint.…"   About a minute ago   Up About a minute   80/tcp    recursing_spence
+458101b3e6c2   nginx     "/docker-entrypoint.…"   About a minute ago   Up About a minute   80/tcp    tender_vaughan
+
+1.2
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
