@@ -1,0 +1,5 @@
+- Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+- Commands:
+docker run -d devopsdockeruh/simple-web-service:alpine
+docker exec -it bb sh
+- The Alpine image size is 15.7MB while the Ubuntu image size is 83MB
