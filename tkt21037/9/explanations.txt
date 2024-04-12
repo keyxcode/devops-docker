@@ -1,0 +1,1 @@
+I had to change the REACT_APP_BACKEND_URL environment variable in the frontend Dockerfile to localhost:80/api because this is where our requests are sent from using nginx.
