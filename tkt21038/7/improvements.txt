@@ -1,0 +1,71 @@
+- Original images
+
+### Backend: 1.07GB
+IMAGE          CREATED        CREATED BY                                      SIZE      COMMENT
+877620d1fd39   22 hours ago   CMD ["./server" "${REQUEST_ORIGIN}"]            0B        buildkit.dockerfile.v0
+<missing>      22 hours ago   USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      22 hours ago   RUN /bin/sh -c adduser appuser # buildkit       334kB     buildkit.dockerfile.v0
+<missing>      22 hours ago   RUN /bin/sh -c go build # buildkit              146MB     buildkit.dockerfile.v0
+<missing>      2 weeks ago    ENV REQUEST_ORIGIN=http://localhost:5432        0B        buildkit.dockerfile.v0
+<missing>      2 weeks ago    COPY . . # buildkit                             34.4kB    buildkit.dockerfile.v0
+<missing>      2 weeks ago    EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      2 weeks ago    WORKDIR /usr/src/app                            0B        buildkit.dockerfile.v0
+<missing>      2 years ago    /bin/sh -c #(nop) WORKDIR /go                   0B        
+<missing>      2 years ago    /bin/sh -c mkdir -p "$GOPATH/src" "$GOPATH/b…   0B        
+<missing>      2 years ago    /bin/sh -c #(nop)  ENV PATH=/go/bin:/usr/loc…   0B        
+<missing>      2 years ago    /bin/sh -c #(nop)  ENV GOPATH=/go               0B        
+<missing>      2 years ago    /bin/sh -c set -eux;  arch="$(dpkg --print-a…   387MB     
+<missing>      2 years ago    /bin/sh -c #(nop)  ENV GOLANG_VERSION=1.16.15   0B        
+<missing>      2 years ago    /bin/sh -c #(nop)  ENV PATH=/usr/local/go/bi…   0B        
+<missing>      2 years ago    /bin/sh -c set -eux;  apt-get update;  apt-g…   227MB     
+<missing>      2 years ago    /bin/sh -c apt-get update && apt-get install…   152MB     
+<missing>      2 years ago    /bin/sh -c set -ex;  if ! command -v gpg > /…   18.9MB    
+<missing>      2 years ago    /bin/sh -c set -eux;  apt-get update;  apt-g…   10.7MB    
+<missing>      2 years ago    /bin/sh -c #(nop)  CMD ["bash"]                 0B        
+<missing>      2 years ago    /bin/sh -c #(nop) ADD file:9c4db2a9644ee3029…   124MB
+
+### Frontend: 481MB
+IMAGE          CREATED        CREATED BY                                      SIZE      COMMENT
+8861749c1cbe   22 hours ago   CMD ["serve" "-s" "-l" "5000" "build"]          0B        buildkit.dockerfile.v0
+<missing>      22 hours ago   USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      22 hours ago   RUN /bin/sh -c adduser -D appuser # buildkit    4.87kB    buildkit.dockerfile.v0
+<missing>      2 weeks ago    RUN /bin/sh -c npm run build ${REACT_APP_BAC…   8.67MB    buildkit.dockerfile.v0
+<missing>      2 weeks ago    ENV REACT_APP_BACKEND_URL=http://localhost:8…   0B        buildkit.dockerfile.v0
+<missing>      2 weeks ago    COPY . . # buildkit                             713kB     buildkit.dockerfile.v0
+<missing>      2 weeks ago    RUN /bin/sh -c npm install -g serve # buildk…   6.39MB    buildkit.dockerfile.v0
+<missing>      2 weeks ago    RUN /bin/sh -c npm install # buildkit           347MB     buildkit.dockerfile.v0
+<missing>      2 weeks ago    COPY package* ./ # buildkit                     693kB     buildkit.dockerfile.v0
+<missing>      2 weeks ago    EXPOSE map[5000/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      8 months ago   /bin/sh -c #(nop)  CMD ["node"]                 0B        
+<missing>      8 months ago   /bin/sh -c #(nop)  ENTRYPOINT ["docker-entry…   0B        
+<missing>      8 months ago   /bin/sh -c #(nop) COPY file:4d192565a7220e13…   388B      
+<missing>      8 months ago   /bin/sh -c apk add --no-cache --virtual .bui…   7.76MB    
+<missing>      8 months ago   /bin/sh -c #(nop)  ENV YARN_VERSION=1.22.19     0B        
+<missing>      8 months ago   /bin/sh -c addgroup -g 1000 node     && addu…   102MB     
+<missing>      8 months ago   /bin/sh -c #(nop)  ENV NODE_VERSION=16.20.2     0B        
+<missing>      8 months ago   /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B        
+<missing>      8 months ago   /bin/sh -c #(nop) ADD file:32ff5e7a78b890996…   7.34MB
+
+- After joining RUN commands and removing apk cache: no improvements for either image
+- After changing backend base image to Alpine, the size went down to 447MB. Frontend image was already built on Alpine so no improvement was made.
+
+### Backend: 447MB
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+7ba369b38166   2 minutes ago   CMD ["./server" "${REQUEST_ORIGIN}"]            0B        buildkit.dockerfile.v0
+<missing>      2 minutes ago   USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      2 minutes ago   RUN /bin/sh -c go build && adduser -D appuse…   146MB     buildkit.dockerfile.v0
+<missing>      4 minutes ago   ENV REQUEST_ORIGIN=http://localhost:5432        0B        buildkit.dockerfile.v0
+<missing>      4 minutes ago   COPY . . # buildkit                             34.4kB    buildkit.dockerfile.v0
+<missing>      4 minutes ago   EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      4 minutes ago   WORKDIR /usr/src/app                            0B        buildkit.dockerfile.v0
+<missing>      2 years ago     /bin/sh -c #(nop) WORKDIR /go                   0B        
+<missing>      2 years ago     /bin/sh -c mkdir -p "$GOPATH/src" "$GOPATH/b…   0B        
+<missing>      2 years ago     /bin/sh -c #(nop)  ENV PATH=/go/bin:/usr/loc…   0B        
+<missing>      2 years ago     /bin/sh -c #(nop)  ENV GOPATH=/go               0B        
+<missing>      2 years ago     /bin/sh -c set -eux;  apk add --no-cache --v…   296MB     
+<missing>      2 years ago     /bin/sh -c #(nop)  ENV GOLANG_VERSION=1.16.15   0B        
+<missing>      2 years ago     /bin/sh -c #(nop)  ENV PATH=/usr/local/go/bi…   0B        
+<missing>      2 years ago     /bin/sh -c [ ! -e /etc/nsswitch.conf ] && ec…   17B       
+<missing>      2 years ago     /bin/sh -c apk add --no-cache ca-certificates   519kB     
+<missing>      2 years ago     /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B        
+<missing>      2 years ago     /bin/sh -c #(nop) ADD file:9233f6f2237d79659…   5.59MB 
