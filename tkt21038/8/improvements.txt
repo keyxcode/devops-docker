@@ -1,2 +1,2 @@
-- A multi-stage build using serve and node alpine image reduces the image size from 481MB to 129MB
-- A multi-stage build using nginx alpine reduces the image size down to 23.8MB
+- The multi-stage build using serve and a node alpine base image reduced the image size from 481MB to 129MB
+- The multi-stage build using a nginx alpine base image reduced the image size down to 23.8MB
