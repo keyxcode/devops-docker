@@ -1,0 +1,15 @@
+FROM node:16.20.2-alpine3.18 as build-stage
+WORKDIR /usr/app
+EXPOSE 5000
+
+COPY package* ./
+RUN npm install
+
+COPY . .
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+RUN npm run build ${REACT_APP_BACKEND_URL}
+
+FROM nginx:1.19-alpine
+COPY --from=build-stage /usr/app/build /usr/share/nginx/html
+RUN adduser -D appuser
+USER appuser
