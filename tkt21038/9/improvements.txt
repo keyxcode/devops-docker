@@ -1,0 +1,1 @@
+- The multi-stage build using a scratch base image reduced the image size from 447MB to 18MB 
