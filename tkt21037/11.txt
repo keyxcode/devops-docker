@@ -1,0 +1,6 @@
+I set up a Django dev environment for this web app https://github.com/keyxcode/littlelemon-pipeline
+
+The environment includes two services: a Django environment and a Postgres database
+The most challenging aspect was configuring the database in such a way that when being developed locally, the app uses the local database inside Docker and when being pushed to production, it uses the production database
+I achieved this by passing the DB_CONNECTION value as an ARG and stored it in the ENV in the Dockerfile, which can then be read by Django's settings.py
+During build time, the DB_CONNECTION value will either be passed in through docker-compose.yml when used locally, or through Github secrets when pushed to production
