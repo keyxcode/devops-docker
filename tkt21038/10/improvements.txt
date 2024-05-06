@@ -1,0 +1,1 @@
+Reduced image size from 1.11GB to 326MB by reducing number of build steps and using Alpine linux
